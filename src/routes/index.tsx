@@ -10,10 +10,10 @@ const router = createBrowserRouter([
     // element: <App/>,
     Component: App,
     children: [
-      // {
-      //   index: true,
-      //   Component: Tasks,
-      // },
+      {
+        index: true,
+        Component: Counter,
+      },
       {
         path: "/counter",
         Component: Counter,

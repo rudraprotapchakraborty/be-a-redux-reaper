@@ -14,12 +14,12 @@ export default function Navbar() {
 
       {/* Nav Links */}
       <div className="hidden md:flex gap-8 text-sm md:text-base font-medium text-gray-900 dark:text-gray-200">
-        <Link
+        {/* <Link
           to="/counter"
           className="hover:text-green-500 transition-colors duration-200"
         >
           Counter
-        </Link>
+        </Link> */}
         <Link
           to="/tasks"
           className="hover:text-green-500 transition-colors duration-200"

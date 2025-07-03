@@ -5,10 +5,14 @@ import Footer from "./components/layout/Footer";
 
 function App() {
   return (
-    <div className="mt-24">
-      <Navbar></Navbar>
-      <Outlet></Outlet>
-      <Footer></Footer>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      
+      <main className="flex-1 mt-24 px-4">
+        <Outlet />
+      </main>
+      
+      <Footer />
     </div>
   );
 }
