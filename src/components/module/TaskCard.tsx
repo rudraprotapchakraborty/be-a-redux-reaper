@@ -3,11 +3,12 @@ import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import type { ITask } from "@/types";
 import { cn } from "@/lib/utils";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   deleteTask,
   toggleCompleteState,
 } from "@/redux/features/task/taskSlice";
+import { selectUsers } from "@/redux/features/user/userSlice";
 
 interface IProps {
   task: ITask;
@@ -15,6 +16,8 @@ interface IProps {
 
 export default function TaskCard({ task }: IProps) {
   const dispatch = useAppDispatch();
+  const users = useAppSelector(selectUsers);
+  const assignedUser = users.find((user) => user.id === task.assignedTo);
 
   return (
     <div className="bg-white/10 dark:bg-gray-800/30 backdrop-blur-md border border-gray-300/30 dark:border-gray-600/40 rounded-xl p-6 shadow-md transition-all hover:shadow-lg">
@@ -32,7 +35,8 @@ export default function TaskCard({ task }: IProps) {
             className={cn(
               "text-lg font-semibold text-gray-900 dark:text-gray-100",
               { "line-through": task.isCompleted }
-            )}>
+            )}
+          >
             {task.title}
           </h2>
         </div>
@@ -56,6 +60,10 @@ export default function TaskCard({ task }: IProps) {
       {/* Description */}
       <p className="mt-4 text-sm text-gray-700 dark:text-gray-300">
         {task.description}
+      </p>
+      {/* User  */}
+      <p className="mt-4 text-sm text-gray-700 dark:text-gray-300">
+        Assigned to {assignedUser ? assignedUser.name : "None"}
       </p>
     </div>
   );
